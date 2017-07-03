@@ -68,9 +68,11 @@ angular.module('myApp',['ngMaterial'])
     } else {
       $scope.showErrorToast();
     }
+    if ($scope.past_images.length != max_cat){
     while ($scope.past_images.indexOf(rnd) != -1){
       rnd = parseInt(Math.random()*max_cat) +1;
     }
+  }
    $scope.image = rnd;
 };
       $scope.showErrorToast= function() {
