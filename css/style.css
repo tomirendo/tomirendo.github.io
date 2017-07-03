@@ -1,0 +1,81 @@
+html {
+  background-color: #f6f6f6;
+}
+html .shaded {
+  background-color: rgba(110, 110, 61, 0.09);
+  -webkit-transition: all 500ms ease-in;
+  transition: all 500ms ease-in;
+}
+html body {
+  background-color: #f6f6f6;
+  margin: 0;
+  padding: 0 30px 30px 30px;
+  width: 100%;
+  height: 1400px;
+}
+html body img {
+  max-width: 100%;
+}
+html body .product-filter {
+  padding: 30px 20px 0px 10px;
+  min-height: 100px;
+}
+html body .product-filter .collection-sort {
+  margin-top: -10px;
+}
+html body .product-filter .collection-sort:first-child {
+  padding-right: 20px;
+}
+html body .catalog {
+  padding-bottom: 30px;
+}
+html body .catalog md-card {
+  display: block;
+  padding: 2%;
+  margin: 1px;
+}
+html body .catalog md-card.flex-22 {
+  max-height: 100%;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 24%;
+          flex: 1 1 24%;
+}
+html body .catalog md-card.flex-22:first-child, html body .catalog md-card.flex-22:nth-child(2) {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 46%;
+          flex: 2 46%;
+}
+@media (min-width: 600px) and (max-width: 959px) {
+  html body .catalog md-card.flex-sm-46 {
+    max-height: 100%;
+    box-sizing: border-box;
+    -webkit-box-flex: 2;
+        -ms-flex: 2 46%;
+            flex: 2 46%;
+  }
+}
+@media (max-width: 599px) {
+  html body .catalog md-card.flex-xs-80 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 80%;
+            flex: 1 80%;
+  }
+  html body .catalog md-card.flex-xs-80:first-child, html body .catalog md-card.flex-xs-80:nth-child(2) {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 80%;
+            flex: 1 80%;
+  }
+}
+html body .catalog md-card img {
+  max-width: 100%;
+}
+html body .catalog md-card md-card-footer-text {
+  padding-top: 25px;
+  text-align: center;
+}
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at https://material.angularjs.org/license.
+*/

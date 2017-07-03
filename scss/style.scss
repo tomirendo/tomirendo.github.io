@@ -1,0 +1,98 @@
+html {
+  background-color: #f6f6f6;
+  
+  .shaded {
+    background-color: rgba(110, 110, 61, 0.09);
+    transition: all 500ms ease-in;
+  }
+  
+  body {
+    background-color: #f6f6f6;
+    margin:0;
+    padding:0 30px 30px 30px;
+    width:100%;
+    height:1400px;
+    
+    img {
+          max-width: 100%;
+    }    
+
+    .product-filter {
+      padding:30px 20px 0px 10px;
+      min-height:100px;
+      
+      .collection-sort {
+        margin-top:-10px;
+        &:first-child {
+          padding-right: 20px;
+        }
+      }
+    }
+
+    .catalog {
+      padding-bottom: 30px;
+      md-card {
+        display:block;
+        padding:2%;
+        margin:1px;
+        
+        // Custom setting since ngMaterial 1.0.0 only
+        // supports percentage increments of 5 
+        // 4-column Table, except Row 1 to be 2-Columns
+        &.flex-22 {
+          // max-width: 24% !important;
+          // Disable to all varying sizes in Cards
+          max-height: 100%;
+          box-sizing: border-box;
+          flex: 1 1 24%;
+
+          &:first-child, &:nth-child(2) {
+            flex : 2 46%;  
+          }
+        }
+        
+        @media (min-width: 600px) and (max-width: 959px) {        
+          // Custom setting since ngMaterial 1.0.0 only
+          // supports percentage increments of 5 
+          // 2-column table
+          &.flex-sm-46 {
+            // max-width: 24% !important;
+            // Disable to all varying sizes in Cards
+            max-height: 100%;
+            box-sizing: border-box;
+            flex: 2 46%;
+          }        
+
+        }        
+        
+        // Need this for specificity to override defaults
+        // 1-column Table
+        @media (max-width: 599px) {        
+          &.flex-xs-80 {
+            flex: 1 80%;
+            // Special override for the 1st & 2nd child default resizing
+            &:first-child, &:nth-child(2) {
+              flex : 1 80%;  
+            }
+          } 
+        }        
+              
+        img {
+          max-width: 100%;
+        }
+        md-card-footer-text {
+          padding-top:25px;
+          text-align: center;
+        }
+      }
+      
+    }
+    
+  }
+}
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at https://material.angularjs.org/license.
+*/
