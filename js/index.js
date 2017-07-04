@@ -36,6 +36,8 @@ angular.module('myApp',['ngMaterial'])
       21 : true
           };
 
+$scope.warning_class = "alert";
+$scope.warning = "Make your guess";
   $scope.image = 1;
   $scope.past_images = [];
   $scope.toastPosition = angular.extend({},last);
@@ -63,11 +65,21 @@ angular.module('myApp',['ngMaterial'])
   $scope.next_image = function(input){
     var rnd = 1;
     $scope.past_images += [$scope.image];
-    if ($scope.is_cat[$scope.image] == input){
-      $scope.showSimpleToast();
+    var is_cat = $scope.is_cat[$scope.image];
+    if (is_cat){
+      if (input){
+        $scope.showCat();
+      } else {
+        $scope.showErrorCat();
+      }
     } else {
-      $scope.showErrorToast();
+      if (input){
+        $scope.showErrorBalls();
+      } else{
+        $scope.showBalls();
+      }
     }
+
     if ($scope.past_images.length != max_cat){
     while ($scope.past_images.indexOf(rnd) != -1){
       rnd = parseInt(Math.random()*max_cat) +1;
@@ -75,26 +87,29 @@ angular.module('myApp',['ngMaterial'])
   }
    $scope.image = rnd;
 };
-      $scope.showErrorToast= function() {
-    var pinTo = $scope.getToastPosition();
+      $scope.showErrorCat= function() {
+        $scope.warning_class = "alert-danger";
+        $scope.warning ="No, it was a cat...";
 
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('You are a crazy person ❌')
-        .position(pinTo )
-        .hideDelay(3000)
-    );
-  };
+    };
 
-      $scope.showSimpleToast = function() {
-    var pinTo = $scope.getToastPosition();
+   $scope.showCat= function() {
+        $scope.warning_class = "alert-success";
+        $scope.warning ="Yes! it was a cat!";
 
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Yes, you are correct 🐱!')
-        .position(pinTo )
-        .hideDelay(3000)
-    );
+    };
+
+   $scope.showErrorBalls= function() {
+        $scope.warning_class = "alert-danger";
+        $scope.warning ="No, These were testicles";
+
+    };
+
+      $scope.showBalls= function() {
+
+       $scope.warning_class = "alert-success";
+        $scope.warning ="Yes! You are correct";
+
   };
 })
 .factory('$products',function(){

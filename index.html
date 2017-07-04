@@ -39,7 +39,10 @@
     <a class='btn  btn-success' ng-click="next_image(true)">Sphinx Cat 🐱</a>
     <a class='btn  btn-danger' ng-click="next_image(false)">Testicles 🐡🐡 </a>
   </p>
+  <p>
+  <div class="alert" ng-class="warning_class"> <strong> {{ warning }} </strong> </div>
   
+  </p>
       </div>
   <div class="product-filter" layout>
     <div class="sort md-caption" layout>
@@ -50,8 +53,6 @@
   <center>
     </center> 
   </div>
-  <div layout="row" flex>
-<div>
   </section>
 </body>
 
