@@ -81,9 +81,15 @@ $scope.warning = "Make your guess";
     }
 
     if ($scope.past_images.length != max_cat){
+    if ($scope.past_images == 1){
+      rnd= 20;
+    } else if ($scop3.past_images == 20){
+      rnd = 13;
+    }else {
     while ($scope.past_images.indexOf(rnd) != -1){
       rnd = parseInt(Math.random()*max_cat) +1;
     }
+  }
   }
    $scope.image = rnd;
 };
