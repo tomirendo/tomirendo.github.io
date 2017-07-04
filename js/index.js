@@ -81,9 +81,9 @@ $scope.warning = "Make your guess";
     }
 
     if ($scope.past_images.length != max_cat){
-    if ($scope.past_images == 1){
+    if ($scope.image == 1){
       rnd= 20;
-    } else if ($scope.past_images == 20){
+    } else if ($scope.image == 20){
       rnd = 13;
     }else {
     while ($scope.past_images.indexOf(rnd) != -1){
