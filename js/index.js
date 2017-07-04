@@ -2,7 +2,7 @@ angular.module('myApp',['ngMaterial'])
 .controller('ProductController', function( $scope, $products, $mdMedia,$mdToast) {
     $scope.$mdMedia           = $mdMedia;
 
-    var max_cat = 21;
+    var max_cat = 29;
 
 
   var last = {
