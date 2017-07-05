@@ -102,13 +102,13 @@ $scope.warning = "Make your guess";
 };
       $scope.showErrorCat= function() {
         $scope.warning_class = "alert-danger";
-        $scope.warning ="No, it was a cat...";
+        $scope.warning ="No, It was a cat";
 
     };
 
    $scope.showCat= function() {
         $scope.warning_class = "alert-success";
-        $scope.warning ="Yes! it was a cat!";
+        $scope.warning ="Yes! It was a cat!";
 
     };
 
@@ -121,7 +121,7 @@ $scope.warning = "Make your guess";
       $scope.showBalls= function() {
 
        $scope.warning_class = "alert-success";
-        $scope.warning ="Yes! You are correct";
+        $scope.warning ="Yes! These are testicles!";
 
   };
 })
