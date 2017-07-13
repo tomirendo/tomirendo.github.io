@@ -32,20 +32,21 @@ body,p,h1,h2 {
 Recent debates about the proper definition for the circle constant are.
 </p>
 <H2> Darians are the best measure for angles</H2>
-<p>A whole lot of formulas end up with the $2\pi$ coefficients as a result of using Radians. Radians measure the length of the arc along a circle with a radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ showing up everywhere. This is the wrong way to go about defining angles. 
+<p>The $\pi$ vs $2 \pi$ debate began when a people started noticing that a bunch of classical equations include the constant $2\pi$. For this reason, some started suggesting that we should replace $\pi$ with $2 \pi$ to clean up this mess, thinking that $\pi$ is the problem. But $\pi$ is not the problem, and redefining it is not the solution. $2 \pi$ shows up a whole lot as a result of using Radians. Radians are the problem, and fixing radians is the solution. 
+<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. This means that a single turn it twice the circle constant, which is absurd. This is not the way we should go about defining angles. 
 </p>
 <p>
-The proper way to define angles is to use the arc of a unit circle with a diameter of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more natural definition for angles. One immediate consequence is a quarter of a circle being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
+The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more natural definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
 </p>
 <p>
-We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. 
+We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example, half a turn would be written as $\frac{\pi}{2} \digamma$.
 </p>
 
 <center><img class="figure" src="pi-angles.png" width=50% height=50%/><p>Figure 1 : Some special angles, in Darians.</p></center>
 
 <H2> The Diameter is the fundamental property of a circle</H2>
 <p>
-The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. Rectangles aren't measured by distance from their center! either do triangles. The radius of a circle is not even a directly measurable property. Thus, the Greeks knew what they were doing while defining the circle constant as:
+The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. Rectangles aren't measured by distance from their center! neither do triangles. The radius of a circle is not even a directly measurable property. The diameter is. It is a measurable property that is representative of the size of a shape. Thus, the Greeks knew what they were doing while defining the circle constant as:
 $$ \pi = \frac {Circumference}{Diameter} $$
 </p>
 <p>
@@ -60,8 +61,25 @@ $$ \sin(x) = 2x - \frac{(2x)^3}{3!}+\frac{(2x)^5}{5!}-...= \sum_{n=0}^\infty \fr
 This also results in some beautiful calculus identities:
 $$ \frac{d}{dx} \sin(x) = 2\cos(x) $$
 $$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
-You can differentiate $e^{ix}$ and see for yourself that both definition give the same result!
+You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
 </p>
-  
+<H2> Gaussian Redemption </H2>
+<p>
+A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. But this should be substituted to include only $\pi$. It is well known that $ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$, a simple result that includes only a single $\pi$ (something you might be expecting at this point). This is derived by calculating:
+ 
+ $$ \left(\int_{-\infty}^{\infty} e^{-x^2} dx \right)^2 = \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy = \iint_\mathbb{R^2} e^{-x^2 -y^2} dA$$
+
+</p><p>
+ Using the proper darian Jacobian $dA=2rdrd\theta$, and substituting $u=r^2$ with $du=2rdr$ we get:
+
+$$ ֿ\int_0^{\infty}\int_0^\pi e^{-r^2}2rdrd\theta=ֿ\int_0^{\infty} e^{-u}du \int_0^\pi d\theta = \pi $$
+
+</p><p>
+This result encourages us to define the standard Gaussian as $ \frac{1}{\sqrt{\pi\sigma^2}}e^{-\frac{x^2}{\sigma^2}}$ fixing the historical fascination with $\sqrt{2\pi}$ and resulting in:
+
+$$ \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi \sigma^2}} e^{-\frac{x^2}{\sigma^2}} dx = 1$$
+</p>
+
+
 </body>
 </html>
