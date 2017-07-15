@@ -51,7 +51,7 @@ Many mathematicians, and generally people who should know better, often describe
 Since $-1$ is not a positive real number, it is meaningless to talk about "the" root of $-1$. $-1$ has two equally good roots : $i$ and $-i$. 
 </p>
 <H2> Complex Roots </H2>
-<p>Every number $z\ne 0 $ in the complex plain $\mathbb{C}$ has exactly 2 roots. For a real positive number $a\gt 0 $ there are exactly two solutions to the equation:
+<p>Every number $z\ne 0 $ in the complex plain has exactly 2 roots. For a real positive number $a\gt 0 $ there are exactly two solutions to the equation:
 $$   x^2 - a = 0 $$ 
 Since this equation can be rewritten as $(x-\sqrt{a})(x+\sqrt{a}  ) = 0$, we say that $\pm \sqrt{a} $ are roots of this equation. In this notation $\sqrt{a}$ is a unique positive number.  
  </p>
@@ -63,7 +63,26 @@ Since this equation can be rewritten as $(x-\sqrt{a})(x+\sqrt{a}  ) = 0$, we say
  $$   (x + \frac{1}{\sqrt{2}}\left(\sqrt{\sqrt{a^2 + b^2}+a} +i\sqrt{\sqrt{a^2+b^2}-a})\right)(x - \frac{1}{\sqrt{2}}\left(\sqrt{\sqrt{a^2 + b^2}+a} +i\sqrt{\sqrt{a^2+b^2}-a})\right)  =0 $$
 A similar formula can be derived for $b < 0$. 
  </p> 
+ <H2> Polar Noation and Euler's Formula</H2>
+ <p>
+ Every complex number $z = x+iy$ can be describe in terms of a polar angle and radius. The radius of a complex number is defined as:
+ $$ r = \sqrt{x^2 + y^2} $$
+ $r$ measures how far a point representing a number on the complex plain is from the origin. The polar angle $\theta$ of a complex number is defined as:
+ $$ \theta = \tan^{-1}{\frac{y}{x}} $$  
+ Where $\tan^{-1}$ is the reverse $\tan$ function.  Since for every ration of $x$ and $y$ there exists and angle $\theta$ such that :
+ $$ \frac{\sin(\theta)}{\cos(\theta)} = \frac{y}{x} $$ 
 
+ We get:
+ $$ z = x + iy = r(\cos(\theta) + i\sin(\theta))$$  
+ </p>
+ <p> It can be shown that $e^{i \theta} = \cos(\theta) + i \sin (\theta)$. This important piece of math is called Euler's Formula, and using it we easily get  Eulers famous identity $e^{i\pi} = -1$.</p>
+ <p> The polar definition of a complex number $z$ becomes much nicer by using Euler's formula:
+  $$ z = re^{i\theta}$$
+  Additionally, multiplying two number together becomes an easier task:
+  $$ z_1 z_2 = r_1 e^{i\theta_1} r_2 e^{i \theta_2 } = r_1r_2 e^{i(\theta_1 + \theta_2)} $$
+  We can see from this that the complex roots of $re^{i\theta}$ are exactly:
+  $ \sqrt{r}e^{i\frac{\theta}{2}}$ and $ \sqrt{r}e^{i\frac{\theta+2\pi}{2}}$. This formula can easily be generalized for 3rd, 4th and so on roots of a complex number.
+  </p>
 
 </body>
 </html>
