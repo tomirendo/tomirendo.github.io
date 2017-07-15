@@ -17,7 +17,7 @@
 body,p,h1,h2 {
     font-family: 'Raleway', sans-serif;
     width : 90%;
-    max-width: 700px;
+    max-width: 900px;
     margin-left: 20px;
 
 }
@@ -26,6 +26,9 @@ img{
   height: 50%;
   max-width: 400px;
   max-height: 400px;
+}
+a {
+  color :black;
 }
 .figure{ 
   align : center;
@@ -48,7 +51,7 @@ img{
 The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more elegant definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
 </p>
 <p>
-We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example,  half a turn would be written as $\frac{\pi}{2} \digamma$.
+We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter <a href="https://www.youtube.com/watch?v=GFLkou8NvJo"> Digamma</a> $\digamma$. For example,  half a turn would be written as $\frac{\pi}{2} \digamma$.
 </p>
 
 <center><img  src="pi-angles.png"/><p>Figure 1 : Some special angles, in Darians.</p></center>
@@ -80,6 +83,12 @@ This also results in some beautiful calculus identities:
 $$ \frac{d}{dx} \sin(x) = 2\cos(x) $$
 $$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
 Notice how these factors of 2 were hiding all along in our Radians notation.  You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
+</p>
+<H2> Factors of 2</H2>
+<p> Radians insistence that a full turn is $2\pi$ results in factors of 2 hiding in notation all over math. A way to fix it is to redefine the standard exponential function to include those factors. This redefinition lets us introduce a new constant:
+$$ e^{2(ix)} = \cos(x) + i \sin(x) = l^{ix} $$
+Setting $l = e^2$. This is a useful definition, and since this constant appeared in some of the work done by French mathematician Adrien-Marie Legendre, it is appropriate to name it 
+<a href="https://en.wikipedia.org/wiki/Legendre%27s_constant"> Legendre's Constant</a>. Similar to our new $\sin$ definition Legendre's constant has the property $\frac{d}{dx} l^x = 2l^x $.
 </p>
 <H2> Gaussian Redemption </H2>
 <p>
