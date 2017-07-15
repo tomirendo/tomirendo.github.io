@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MathJax TeX Test Page</title>
+<title>The Proper Pi Manifesto</title>
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
@@ -9,13 +9,23 @@
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 </script>
 <script type="text/javascript">
-    //setTimeout(function(){ location.reload()},5000);
 </script>
+<link href="https://fonts.googleapis.com/css?family=Raleway:300,600" rel="stylesheet">
+
 <style type="text/css">
 
 body,p,h1,h2 {
-    font-family: helvetica-light;
+    font-family: 'Raleway', sans-serif;
+    width : 90%;
+    max-width: 700px;
+    margin-left: 20px;
 
+}
+img{
+  width : 50%;
+  height: 50%;
+  max-width: 400px;
+  max-height: 400px;
 }
 .figure{ 
   align : center;
@@ -29,29 +39,37 @@ body,p,h1,h2 {
 <p>
 </p>
 <H2> The circle constant </H2>
-Recent debates about the proper definition for the circle constant are.
 </p>
-<H2> Darians are the best measure for angles</H2>
-<p>The $\pi$ vs $2 \pi$ debate began when a people started noticing that a bunch of classical equations include the constant $2\pi$. For this reason, some started suggesting that we should replace $\pi$ with $2 \pi$ to clean up this mess, thinking that $\pi$ is the problem. But $\pi$ is not the problem, and redefining it is not the solution. $2 \pi$ shows up a whole lot as a result of using Radians. Radians are the problem, and fixing radians is the solution. 
-<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. This means that a single turn it twice the circle constant, which is absurd. This is not the way we should go about defining angles. 
-</p>
-<p>
-The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more natural definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
+<H2> Radians are a bad measure for angles</H2>
+<p>The $\pi$ vs $2 \pi$ debate began when people noticed a bunch of classical equations include the constant $2\pi$. For this reason, some started suggesting that we should replace $\pi$ with $2 \pi$ to clean up this mess, thinking that $\pi$ is the problem. But $\pi$ is not the problem, and redefining it is not the solution. $2 \pi$ shows up a whole lot as a result of using Radians. Radians are the problem, and fixing radians is the solution. 
+<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. This means that a single turn is twice the circle constant, which is absurd. This is not the way we should go about defining angles. 
 </p>
 <p>
-We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example, half a turn would be written as $\frac{\pi}{2} \digamma$.
+The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more elegant definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
+</p>
+<p>
+We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example,  half a turn would be written as $\frac{\pi}{2} \digamma$.
 </p>
 
-<center><img class="figure" src="pi-angles.png" width=50% height=50%/><p>Figure 1 : Some special angles, in Darians.</p></center>
+<center><img  src="pi-angles.png"/><p>Figure 1 : Some special angles, in Darians.</p></center>
 
 <H2> The Diameter is the fundamental property of a circle</H2>
 <p>
-The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. Rectangles aren't measured by distance from their center! neither do triangles. The radius of a circle is not even a directly measurable property. The diameter is. It is a measurable property that is representative of the size of a shape. Thus, the Greeks knew what they were doing while defining the circle constant as:
+The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. Rectangles aren't measured by distance from their center! neither do triangles. The radius of a circle is not even a directly measurable property. The diameter is. It's a measurable property that is representative of the size of a shape. Thus, the Greeks knew what they were doing while defining the circle constant as:
 $$ \pi = \frac {Circumference}{Diameter} $$
 </p>
 <p>
 Which holds for any circle.
 </p>
+<p>
+Looking at the diameter clears up a whole lot of calculations. For instance, the circumference of a unit circle is exactly $\pi$. Similarly, the surface area of a unit sphere (i.e. a sphere with diameter $1$) is exactly $\pi$. Looking at the diameter clears up both definition of length and surface:
+$$ C_{2d} = d \cdot \pi \ \ ; S_{3d}   = d^2\cdot \pi $$
+Where $d$ is the diameter,  $C$ is the circumference of a $2d$ sphere (a circle) , and $S$ is the surface area of a $3d$ sphere. 
+</p>
+
+<center><img src="sphere.png" /> <p>
+Figure 2 : A unit sphere has a diameter $1$ and $\pi$ surface area.</p>
+</center>
 <H2> Calculus agrees </H2>
 <p>
 Using this definition for angles, we get a better definition for $\sin (x)$ that uses Darians. For example $\sin (0)=\sin(\pi) = 0$. Additionally, this new $\sin$ function has a beautiful Taylor Series:
@@ -61,7 +79,7 @@ $$ \sin(x) = 2x - \frac{(2x)^3}{3!}+\frac{(2x)^5}{5!}-...= \sum_{n=0}^\infty \fr
 This also results in some beautiful calculus identities:
 $$ \frac{d}{dx} \sin(x) = 2\cos(x) $$
 $$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
-You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
+Notice how these factors of 2 were hiding all along in our Radians notation.  You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
 </p>
 <H2> Gaussian Redemption </H2>
 <p>
