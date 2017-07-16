@@ -87,6 +87,12 @@ $$ e^{2(ix)} = \cos(x) + i \sin(x) = l^{ix} $$
 Setting $l = e^2$. This is a useful definition, and since this constant appeared in some of the work done by the French mathematician Adrien-Marie Legendre, it is appropriate to name it 
 <a href="https://en.wikipedia.org/wiki/Legendre%27s_constant"> Legendre's Constant</a>. Similar to our new $\sin$ definition Legendre's constant has the property $\frac{d}{dx} l^x = 2l^x $.
 </p>
+<H2> Cauchy's Residue </H2>
+<p> 
+We can use $l$ to calculate Cauchy's residue integral in the complex plain. For $z_0 \in \mathbb{C}$ we will calculate the contour integral along a unit circle (with diameter 1). We take the integral with $\gamma = z_0 + \frac{1}{2} l^{i\theta}$, and $\dot{\gamma} = \frac{1}{2}2il^{i\theta}$:
+$$ \oint_\gamma \frac{1}{z-z_0}dz = \int_0^\pi \frac{\frac{1}{2} 2il^{i\theta}}{\frac{1}{2}l^{i\theta}}d\theta = \int_0^\pi 2i d\theta = 2i\pi$$
+This result connect $3$ fundamental constants of nature: $2$, $i$ and $\pi$.
+</p>
 <H2> Gaussian Redemption </H2>
 <p>
 A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. The reader should notice the horrendous $\sqrt{2\pi}$ factor. The Gaussian distribution has the property that for every real $\sigma$ the integral of the distribution over the real number line equals $1$. We would derive this result using Darians, and see that the $2 \pi$ factor shouldn't have been there in the first place. </p>
@@ -109,5 +115,6 @@ $$ \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi \sigma^2}} e^{-\frac{x^2}{\sigma^2
 A possible alternative definition uses Legendre's Constant that was mentioned above to finally arrive at a standard Gaussian distribution: 
 $$ \frac{1}{\sqrt{2\pi\sigma^2}}l^{\frac{-x^2}{(2\sigma)^2}}$$
 </p>
+
 </body>
 </html>
