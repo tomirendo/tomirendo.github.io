@@ -39,23 +39,25 @@ a {
 <body>
 <H1> The Proper $\pi$ Manifesto</H1>
 <H2> The Circle Constant Debate </H2>
-<p> Being the passionate mathematicians we are, we found the $\pi$ vs $2\pi$ debate frustrating. Each side has their points, but every purposed change seem to brake more than it fixes. After a lot of deliberating we think we have this debate figured out, and would like to purpose a new, elegant solution.</p>
-<p>$\pi$ is the all important circle constant, and it should be the only circle constant we use. To make maths clear and simple, we must use it properly, something we haven't been doing.</p>
-<H2> Radians are a bad measure for angles</H2>
-<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. With this definition,a single turn becomes twice the circle constant. This is absurd, and evidently this factor of $2$ haunts us throughout mathematics. To fix this, some suggested that we should redefine $\pi$ to be $2\pi$, but this is not the solution. Radians are the problem, and fixing them should be the solution.
+<p> Being the passionate mathematicians we are, we found the $\pi$ vs $\tau$ debate frustrating. Each side has their points, but every purposed change seem to brake more than it fixes. After a lot of deliberating, we think we have this debate figured out, and would like to purpose a new, elegant solution.</p>
+
+<H2> Understanding the problem </H2>
+<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. With this definition, a single turn becomes twice the circle constant. This is absurd, and evidently this factor of $2$ haunts us throughout mathematics. To fix this, some suggested that we should redefine $\pi$ to be $2\pi$, but this is not the solution. 
+</p>
+<p>$\pi$ is the all important circle constant. It has historical and cultural significance, and it is here to stay. Changing it unreasonable, and most importantly unnecessary, since:</p>
+<H2> Radians are the problem</H2>
+<p>Radians are the problem, and fixing radians is the solution.</p>
+<p> The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more elegant definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
 </p>
 <p>
-The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more elegant definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
-</p>
-<p>
-We will call this system for measuring angles "Darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example,  half a turn would be written as $\frac{\pi}{2} \digamma$.
+We will call this system for measuring angles "darians". Instead of the $rad$ symbol defining angles in radians, we would use the Greek letter Digamma $\digamma$. For example,  half a turn would be written as $\frac{\pi}{2} \digamma$.
 </p>
 
-<center><img  src="pi-angles.png"/><p>Figure 1 : Some special angles, in Darians.</p></center>
+<center><img  src="pi-angles.png"/><p>Figure 1 : Some special angles, in darians.</p></center>
 
 <H2> The Diameter is the fundamental property of a circle</H2>
 <p>
-The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. Rectangles aren't measured by distance from their center! neither do triangles. The radius of a circle is not even a directly measurable property. The diameter is. It's a measurable property that is representative of the size of a shape. Thus, the Greeks knew what they were doing while defining the circle constant as:
+The reason darians are better measure for angles is that <b>the diameter is the fundamental property of the circle</b>. No other shape is described by distance from its center. Imagine if we were describe a square by its radius, it would make no sense! The radius of a circle is not even a directly measurable property. The diameter is. It's a measurable property that is representative of the size of a shape. This is why the standard definition $\pi$ is:
 $$ \pi = \frac {Circumference}{Diameter} $$
 </p>
 <p>
@@ -72,7 +74,7 @@ Figure 2 : A unit sphere has a diameter $1$ and $\pi$ surface area.</p>
 </center>
 <H2> Calculus agrees </H2>
 <p>
-Using this definition for angles, we get a better definition for $\sin (x)$ that uses Darians. For example $\sin (0)=\sin(\pi) = 0$. Additionally, this new $\sin$ function has a beautiful Taylor Series:
+Using this definition for angles, we get a better definition for $\sin (x)$ that uses darians. For example $\sin (0)=\sin(\pi) = 0$. Additionally, this new $\sin$ function has a beautiful Taylor Series:
 
 $$ \sin(x) = 2x - \frac{(2x)^3}{3!}+\frac{(2x)^5}{5!}-...= \sum_{n=0}^\infty \frac{(2x)^{2n+1}}{(2n+1)!}(-1)^n $$
 
@@ -89,20 +91,20 @@ Setting $l = e^2$. This is a useful definition, and since this constant appeared
 </p>
 <H2> Cauchy's Residue </H2>
 <p> 
-We can use $l$ to calculate Cauchy's residue integral in the complex plain. For $z_0 \in \mathbb{C}$ we will calculate the contour integral along a unit circle (with diameter 1). We take the integral with $\gamma = z_0 + \frac{1}{2} l^{i\theta}$, and $\dot{\gamma} = \frac{1}{2}2il^{i\theta}$:
+We can use $l$ to calculate Cauchy's residue integral in the complex plain. For $z_0 \in \mathbb{C}$ we will calculate the contour integral along a unit circle (with diameter 1) center around $z_0$. We take the integral with $\gamma = z_0 + \frac{1}{2} l^{i\theta}$, and $\dot{\gamma} = \frac{1}{2}2il^{i\theta}$:
 $$ \oint_\gamma \frac{1}{z-z_0}dz = \int_0^\pi \frac{\frac{1}{2} 2il^{i\theta}}{\frac{1}{2}l^{i\theta}}d\theta = \int_0^\pi 2i d\theta = 2i\pi$$
-This result connect $3$ fundamental constants of nature: $2$, $i$ and $\pi$.
+This result connects $3$ fundamental constants of nature: $2$, $i$ and $\pi$.
 </p>
 <H2> Gaussian Redemption </H2>
 <p>
-A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. The reader should notice the horrendous $\sqrt{2\pi}$ factor. The Gaussian distribution has the property that for every real $\sigma$ the integral of the distribution over the real number line equals $1$. We would derive this result using Darians, and see that the $2 \pi$ factor shouldn't have been there in the first place. </p>
+A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. The reader should notice the horrendous $\sqrt{2\pi}$ factor. The Gaussian distribution has the property that for every real $\sigma$ the integral of the distribution over the real number line equals $1$. We would derive this result using darians, and see that the $2 \pi$ factor shouldn't have been there in the first place. </p>
 <p>
 We begin by finding the value of $\int_{-\infty}^{\infty} e^{-x^2} dx$. This is done by squaring the integral:
  
  $$ \left(\int_{-\infty}^{\infty} e^{-x^2} dx \right)^2 = \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy = \iint_\mathbb{R^2} e^{-x^2 -y^2} dA$$
 
 </p><p>
- Using the proper Darian Jacobian $dA=2rdrd\theta$ and simple substitution $u=r^2$ with $du=2rdr$ we get:
+ Using the proper darian Jacobian $dA=2rdrd\theta$ and simple substitution $u=r^2$ with $du=2rdr$ we get:
 
 $$ ֿ\int_0^{\infty}\int_0^\pi e^{-r^2}2rdrd\theta=ֿ\int_0^{\infty} e^{-u}du \int_0^\pi d\theta = \pi $$
 
@@ -115,6 +117,9 @@ $$ \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi \sigma^2}} e^{-\frac{x^2}{\sigma^2
 A possible alternative definition uses Legendre's Constant that was mentioned above to finally arrive at a standard Gaussian distribution: 
 $$ \frac{1}{\sqrt{2\pi\sigma^2}}l^{\frac{-x^2}{(2\sigma)^2}}$$
 </p>
-
+<H2> An endless list of equations simplified by the use of darians</H2>
+<p>
+We don't think that comparing endless lists of equations, and arguing about which constant simplifies more of them is the correct way to look at maths. But if you insist, darians do a pretty good job, and you can find an endless list to show off to all your friends <a href="beautiful.jpg"> here</a>.
+</p>
 </body>
 </html>
