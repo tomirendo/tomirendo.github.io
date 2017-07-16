@@ -38,14 +38,11 @@ a {
 </head>
 <body>
 <H1> The Proper $\pi$ Manifesto</H1>
-<H2> Preface </H2>
-<p>
-</p>
-<H2> The circle constant </H2>
-</p>
+<H2> The Circle Constant Debate </H2>
+<p> Being the passionate mathematicians we are, we found the $\pi$ vs $2\pi$ debate frustrating. Each side has their points, but every purposed change seem to brake more than it fixes. After a lot of deliberating we think we have this debate figured out, and would like to purpose a new, elegant solution.</p>
+<p>$\pi$ is the all important circle constant, and it should be the only circle constant we use. To make maths clear and simple, we must use it properly, something we haven't been doing.</p>
 <H2> Radians are a bad measure for angles</H2>
-<p>The $\pi$ vs $2 \pi$ debate began when people noticed a bunch of classical equations include the constant $2\pi$. For this reason, some started suggesting that we should replace $\pi$ with $2 \pi$ to clean up this mess, thinking that $\pi$ is the problem. But $\pi$ is not the problem, and redefining it is not the solution. $2 \pi$ shows up a whole lot as a result of using Radians. Radians are the problem, and fixing radians is the solution. 
-<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. This means that a single turn is twice the circle constant, which is absurd. This is not the way we should go about defining angles. 
+<p> Radians are a unit for measuring angles. An angle in radians is the length of the arc along a circle with radius $1$. The circumference of such circle is $2\pi$, and this results in $2\pi$ being the length of a full turn. With this definition,a single turn becomes twice the circle constant. This is absurd, and evidently this factor of $2$ haunts us throughout mathematics. To fix this, some suggested that we should redefine $\pi$ to be $2\pi$, but this is not the solution. Radians are the problem, and fixing them should be the solution.
 </p>
 <p>
 The proper way to define angles is to use the arc of a unit circle with a <b>diameter </b>of length $1$. The circumference of this unit circle is exactly $\pi = 3.1415926...$. An angle $\alpha$ would be defined as the length of the arc along this circle. This is a simpler and much more elegant definition for angles. One immediate consequence is a quarter of a turn being $\frac{\pi}{4}$, and the same is true for all parts of a circle.
@@ -85,19 +82,21 @@ $$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
 Notice how these factors of 2 were hiding all along in our Radians notation.  You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
 </p>
 <H2> Factors of 2</H2>
-<p> Radians insistence that a full turn is $2\pi$ results in factors of 2 hiding in notation all over math. A way to fix it is to redefine the standard exponential function to include those factors. This redefinition lets us introduce a new constant:
+<p> Radians insistence that a full turn is $2\pi$ results in factors of 2 hiding in notation all over maths. A way to fix it is to redefine the standard exponential function to include those factors. This redefinition lets us introduce a new constant:
 $$ e^{2(ix)} = \cos(x) + i \sin(x) = l^{ix} $$
-Setting $l = e^2$. This is a useful definition, and since this constant appeared in some of the work done by French mathematician Adrien-Marie Legendre, it is appropriate to name it 
+Setting $l = e^2$. This is a useful definition, and since this constant appeared in some of the work done by the French mathematician Adrien-Marie Legendre, it is appropriate to name it 
 <a href="https://en.wikipedia.org/wiki/Legendre%27s_constant"> Legendre's Constant</a>. Similar to our new $\sin$ definition Legendre's constant has the property $\frac{d}{dx} l^x = 2l^x $.
 </p>
 <H2> Gaussian Redemption </H2>
 <p>
-A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. But this should be substituted to include only $\pi$. It is well known that $ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$, a simple result that includes only a single $\pi$ (something you might be expecting at this point). This is derived by calculating:
+A standard Gaussian distribution is usually written as $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{x^2}{2\sigma^2}} $. The reader should notice the horrendous $\sqrt{2\pi}$ factor. The Gaussian distribution has the property that for every real $\sigma$ the integral of the distribution over the real number line equals $1$. We would derive this result using Darians, and see that the $2 \pi$ factor shouldn't have been there in the first place. </p>
+<p>
+We begin by finding the value of $\int_{-\infty}^{\infty} e^{-x^2} dx$. This is done by squaring the integral:
  
  $$ \left(\int_{-\infty}^{\infty} e^{-x^2} dx \right)^2 = \int_{-\infty}^{\infty} e^{-x^2} dx \cdot \int_{-\infty}^{\infty} e^{-y^2} dy = \iint_\mathbb{R^2} e^{-x^2 -y^2} dA$$
 
 </p><p>
- Using the proper darian Jacobian $dA=2rdrd\theta$, and substituting $u=r^2$ with $du=2rdr$ we get:
+ Using the proper Darian Jacobian $dA=2rdrd\theta$ and simple substitution $u=r^2$ with $du=2rdr$ we get:
 
 $$ ֿ\int_0^{\infty}\int_0^\pi e^{-r^2}2rdrd\theta=ֿ\int_0^{\infty} e^{-u}du \int_0^\pi d\theta = \pi $$
 
@@ -106,7 +105,9 @@ This result encourages us to define the standard Gaussian as $ \frac{1}{\sqrt{\p
 
 $$ \int_{-\infty}^{\infty} \frac{1}{\sqrt{\pi \sigma^2}} e^{-\frac{x^2}{\sigma^2}} dx = 1$$
 </p>
-
-
+<p>
+A possible alternative definition uses Legendre's Constant that was mentioned above to finally arrive at a standard Gaussian distribution: 
+$$ \frac{1}{\sqrt{2\pi\sigma^2}}l^{\frac{-x^2}{(2\sigma)^2}}$$
+</p>
 </body>
 </html>
