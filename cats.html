@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Sphynx Cat or Testicles</title>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+  
+  <link rel='stylesheet prefetch' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+  <style>
+  .jumbotron{
+    text-align: center;
+  }
+
+  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+  <body ng-app="myApp" ng-cloak ng-controller="ProductController as products" layout="column">
+      <div class="jumbotron">
+      <p>
+    <h3 flex class="md-headline">Sphynx Cat or Testicles</h1>
+    </p>
+      <p>
+    <img src="{{ image }}.jpg" max-height=400px  width=500px/ border=1/>
+    </p>
+    <p>
+    <a class='btn  btn-success' ng-click="next_image(true)">Sphinx Cat 🐱</a>
+    <a class='btn  btn-danger' ng-click="next_image(false)">Testicles 🐡🐡 </a>
+  </p>
+  <p>
+  <div class="alert" ng-class="warning_class"> <strong> {{ warning }} </strong> </div>
+  
+  </p>
+      </div>
+  <div class="product-filter" layout>
+    <div class="sort md-caption" layout>
+  </div>
+  </div>
+  <section width=500px>
+  <div layout="column" >
+  <center>
+    </center> 
+  </div>
+  </section>
+</body>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at https://material.angularjs.org/license.
+-->
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angular_material/1.0.3/angular-material.min.js'></script>
+
+    <script src="js/index.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</body>
+</html>
