@@ -1,0 +1,19 @@
+.figureImage{
+  width : 500px;
+  margin : 0px;
+  margin-right : 50px;
+  height : auto;
+}
+.figureText{
+  text-align : center;
+  margin-right : 50px;
+  width : 500px
+}
+.scrollableTable{
+  overflow-y : scroll;
+  height : 100px;
+}
+td{
+  direction :rtl;
+  text-align : right;
+}

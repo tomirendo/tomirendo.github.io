@@ -1,0 +1,17 @@
+* {
+    text-align: right;
+    direction: rtl;
+}
+h1, h2, h3{
+    font-family: 'Frank Ruhl Libre', serif;
+    /*font-family: 'David Libre', serif;*/
+    /* font-family: 'Assistant', sans-serif; */
+}
+a{ color : black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+p{
+
+    font-family: 'David Libre', serif;
+}
