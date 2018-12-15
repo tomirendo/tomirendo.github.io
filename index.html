@@ -86,14 +86,16 @@ Figure 2 : A unit sphere has a diameter $1$ and $\pi$ surface area.</p>
 </center>
 <H2> Calculus agrees </H2>
 <p>
-Using this definition for angles, we get a better definition for $\sin (x)$ that uses darians. For example $\sin (0)=\sin(\pi) = 0$. Additionally, this new $\sin$ function has a beautiful Taylor Series:
+Using this definition for angles, we get a better definition for $\sin (x)$ that uses darians. For example $\sin (0)=\sin(\pi) = 0$. This redefinition results in some beautiful calculus identities:
+
+$$ \frac{d}{dx} \sin(x) = 2\cos(x) $$
+$$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
+
+Additionally, the new $\sin$ function has a beautiful Taylor Series:
 
 $$ \sin(x) = 2x - \frac{(2x)^3}{3!}+\frac{(2x)^5}{5!}-...= \sum_{n=0}^\infty \frac{(2x)^{2n+1}}{(2n+1)!}(-1)^n $$
 
-This also results in some beautiful calculus identities:
-$$ \frac{d}{dx} \sin(x) = 2\cos(x) $$
-$$ e^{ix} = \cos \left(\frac{x}{2} \right)+i\sin\left(\frac{x}{2}\right)$$
-Notice how these factors of 2 were hiding all along in our Radians notation.  You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
+Notice how these factors of 2 were hiding all along in our Radians notation. You can differentiate $e^{ix}$ and see for yourself that both definition give the same result. You would also notice that $ e^{i\pi} = -1$.
 </p>
 <H2> Factors of 2</H2>
 <p> Radians insistence that a full turn is $2\pi$ results in factors of 2 hiding in notation all over maths. A way to fix it is to redefine the standard exponential function to include those factors. This redefinition lets us introduce a new constant:
