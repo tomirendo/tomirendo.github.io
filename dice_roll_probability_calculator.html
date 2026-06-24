@@ -1,0 +1,195 @@
+<div style="padding: 1rem 0;">
+<h2 class="sr-only">Dice roll probability calculator: enter a dice expression and see the outcome distribution as a bar chart</h2>
+<div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
+  <input id="diceInput" type="text" value="1d6+3d4+5" placeholder="e.g. 2d12, 1d20+5, 3d6-2" style="flex:1;" />
+</div>
+<div id="parseInfo" style="font-size:13px; color:var(--color-text-secondary); margin-bottom:1rem;"></div>
+<div id="errorBox" style="display:none; font-size:13px; color:var(--color-text-danger); margin-bottom:1rem;"></div>
+<div id="statsGrid" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:12px; margin-bottom:1.5rem;"></div>
+<div style="position:relative; width:100%; height:280px;">
+  <canvas id="distChart" role="img" aria-label="Bar chart showing the probability of each possible sum for the entered dice roll">Bar chart of dice roll outcome probabilities</canvas>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+(function(){
+  var input = document.getElementById('diceInput');
+  var parseInfo = document.getElementById('parseInfo');
+  var errorBox = document.getElementById('errorBox');
+  var statsGrid = document.getElementById('statsGrid');
+  var ctx = document.getElementById('distChart');
+  var chart = null;
+  var timer = null;
+  var CAP = 300000;
+  var MAX_DICE = 100;
+  var MAX_SIDES = 1000;
+
+  function parseExpr(raw){
+    var s = raw.replace(/\s+/g,'').toLowerCase();
+    if (s.length===0) throw new Error('Enter a dice expression');
+    if (s[0]!=='+' && s[0]!=='-') s = '+'+s;
+    var terms = s.match(/[+-][^+-]+/g);
+    if (!terms) throw new Error('Could not parse expression');
+    var dice = [];
+    var modifier = 0;
+    for (var i=0;i<terms.length;i++){
+      var t = terms[i];
+      var sign = t[0]==='-' ? -1 : 1;
+      var rest = t.slice(1);
+      var dieMatch = rest.match(/^(\d*)d(\d+)$/);
+      if (dieMatch){
+        var count = dieMatch[1] ? parseInt(dieMatch[1],10) : 1;
+        var sides = parseInt(dieMatch[2],10);
+        if (sides<2) throw new Error('Die sides must be at least 2 (got d'+sides+')');
+        if (sides>MAX_SIDES) throw new Error('Max '+MAX_SIDES+' sides per die');
+        if (count<1) throw new Error('Die count must be at least 1');
+        for (var k=0;k<count;k++) dice.push({sides:sides, sign:sign});
+      } else if (/^\d+$/.test(rest)){
+        modifier += sign*parseInt(rest,10);
+      } else {
+        throw new Error('Unrecognized term "'+t+'"');
+      }
+    }
+    if (dice.length===0) throw new Error('Enter at least one die, e.g. 2d6');
+    if (dice.length>MAX_DICE) throw new Error('Max '+MAX_DICE+' dice total');
+    return {dice:dice, modifier:modifier};
+  }
+
+  function tally(dice){
+    var totalCombos = 1;
+    for (var i=0;i<dice.length;i++) totalCombos *= dice[i].sides;
+    var counts = {};
+    if (totalCombos <= CAP){
+      (function rec(idx, sum){
+        if (idx===dice.length){
+          counts[sum] = (counts[sum]||0)+1;
+          return;
+        }
+        var d = dice[idx];
+        for (var face=1; face<=d.sides; face++){
+          rec(idx+1, sum + d.sign*face);
+        }
+      })(0,0);
+      return {counts:counts, total:totalCombos, method:dice.length+'-deep nested loop'};
+    }
+    var dist = {0:1};
+    for (var i=0;i<dice.length;i++){
+      var d = dice[i];
+      var next = {};
+      var keys = Object.keys(dist);
+      for (var ki=0; ki<keys.length; ki++){
+        var k = parseInt(keys[ki],10);
+        var c = dist[k];
+        for (var face=1; face<=d.sides; face++){
+          var nk = k + d.sign*face;
+          next[nk] = (next[nk]||0) + c;
+        }
+      }
+      dist = next;
+    }
+    return {counts:dist, total:totalCombos, method:'convolution (too many outcomes for brute nested loops)'};
+  }
+
+  function render(){
+    var raw = input.value;
+    var parsed;
+    try {
+      parsed = parseExpr(raw);
+    } catch (e){
+      errorBox.style.display = 'block';
+      errorBox.textContent = e.message;
+      parseInfo.textContent = '';
+      statsGrid.innerHTML = '';
+      if (chart){ chart.destroy(); chart = null; }
+      return;
+    }
+    errorBox.style.display = 'none';
+
+    var result = tally(parsed.dice);
+    var counts = result.counts;
+    var total = result.total;
+    var modifier = parsed.modifier;
+
+    var sidesSummary = {};
+    parsed.dice.forEach(function(d){
+      var key = (d.sign<0?'-':'')+'d'+d.sides;
+      sidesSummary[key] = (sidesSummary[key]||0)+1;
+    });
+    var summaryParts = Object.keys(sidesSummary).map(function(k){ return sidesSummary[k]+k; });
+    if (modifier !== 0) summaryParts.push((modifier>0?'+':'')+modifier);
+    parseInfo.textContent = summaryParts.join(' + ').replace(/\+ -/g,'- ') + '  —  ' + parsed.dice.length + ' dice, ' + result.method + ', ' + total.toLocaleString() + ' total outcomes';
+
+    var rawValues = Object.keys(counts).map(Number).sort(function(a,b){return a-b;});
+    var values = rawValues.map(function(v){ return v+modifier; });
+    var probs = rawValues.map(function(v){ return counts[v]/total; });
+    var countsArr = rawValues.map(function(v){ return counts[v]; });
+
+    var minV = values[0];
+    var maxV = values[values.length-1];
+    var meanV = 0;
+    for (var i=0;i<values.length;i++) meanV += values[i]*probs[i];
+    var maxProbIdx = 0;
+    for (var i=1;i<probs.length;i++) if (probs[i]>probs[maxProbIdx]) maxProbIdx = i;
+
+    function metric(label, val){
+      return '<div style="background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:1rem;"><div style="font-size:13px; color:var(--color-text-secondary); margin-bottom:4px;">'+label+'</div><div style="font-size:24px; font-weight:500;">'+val+'</div></div>';
+    }
+    statsGrid.innerHTML =
+      metric('Min', minV) +
+      metric('Max', maxV) +
+      metric('Mean', meanV.toFixed(2)) +
+      metric('Most likely', values[maxProbIdx]+' ('+(probs[maxProbIdx]*100).toFixed(1)+'%)');
+
+    var labels = values.map(String);
+    var data = probs.map(function(p){ return Math.round(p*1000)/10; });
+
+    if (chart){
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = data;
+      chart.data.datasets[0]._counts = countsArr;
+      chart.data.datasets[0]._total = total;
+      chart.update();
+    } else {
+      chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Probability',
+            data: data,
+            backgroundColor: '#378ADD',
+            _counts: countsArr,
+            _total: total
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function(c){
+                  var cnt = c.dataset._counts[c.dataIndex];
+                  var tot = c.dataset._total;
+                  return c.parsed.y + '% (' + cnt.toLocaleString() + ' / ' + tot.toLocaleString() + ')';
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { autoSkip: true, maxRotation: 0 }, title: { display: true, text: 'Sum' } },
+            y: { title: { display: true, text: 'Probability (%)' }, beginAtZero: true }
+          }
+        }
+      });
+    }
+  }
+
+  input.addEventListener('input', function(){
+    clearTimeout(timer);
+    timer = setTimeout(render, 150);
+  });
+  render();
+})();
+</script>
