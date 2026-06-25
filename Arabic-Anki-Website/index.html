@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>מעיין במדבר - Arabic Anki Decks</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #f7efe5, #fffaf4);
+      color: #2b211c;
+    }
+
+    header {
+      background: linear-gradient(135deg, #8b5e3c, #c78b59);
+      color: white;
+      padding: 60px 25px;
+      text-align: center;
+      border-bottom-left-radius: 45px;
+      border-bottom-right-radius: 45px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 1px;
+    }
+
+    header h2 {
+      margin: 15px 0 0;
+      font-size: 26px;
+      font-weight: normal;
+      opacity: 0.95;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: 40px auto;
+      padding: 0 22px;
+    }
+
+    .intro {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      text-align: center;
+      line-height: 1.8;
+      font-size: 20px;
+    }
+
+    .intro strong {
+      color: #8b5e3c;
+    }
+
+    .section {
+      margin-top: 38px;
+    }
+
+    .section h2 {
+      font-size: 30px;
+      color: #7a4b2d;
+      border-right: 7px solid #c78b59;
+      padding-right: 14px;
+      margin-bottom: 18px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+
+    .deck-card {
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      border: 1px solid #f0dfcf;
+      transition: 0.25s;
+    }
+
+    .deck-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    }
+
+    .deck-card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
+      color: #5c3824;
+    }
+
+    .deck-card p {
+      margin: 0 0 18px;
+      color: #5f514a;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .button {
+      display: inline-block;
+      background: #8b5e3c;
+      color: white;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 12px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #6f452b;
+    }
+
+    .download-all {
+      text-align: center;
+      margin: 45px 0;
+      background: #fff4ea;
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px dashed #c78b59;
+    }
+
+    .download-all h2 {
+      margin-top: 0;
+      color: #7a4b2d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #6b5a50;
+      font-size: 16px;
+    }
+
+    .arabic {
+      direction: rtl;
+      font-size: 28px;
+      color: #8b5e3c;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 36px;
+      }
+
+      header h2 {
+        font-size: 21px;
+      }
+
+      .intro {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>מעיין במדבר</h1>
+    <h2>Arabic for Beginners - Anki Learning Decks</h2>
+    <div class="arabic">العربية للمبتدئين</div>
+  </header>
+
+  <main class="container">
+
+    <section class="intro">
+      <p>
+        פרויקט זה נעשה על ידי <strong>שהד ואיתמר</strong> במסגרת התוכנית
+        <strong>מעיין במדבר</strong>.
+      </p>
+      <p>
+        מטרת הפרויקט היא לעזור ללומדים חדשים להתחיל ללמוד ערבית בצורה הדרגתית,
+        פשוטה וברורה בעזרת כרטיסיות Anki.
+      </p>
+      <p>
+        הכרטיסיות מחולקות לפי שלבים: אותיות, צורות האותיות, תנועות, סימני ניקוד,
+        ולבסוף תרגול קריאה של מילים בערבית.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>קבוצה 1: אותיות בערבית</h2>
+
+      <div class="cards-grid">
+
+        <div class="deck-card">
+          <h3>Arabic Letter Order</h3>
+          <p>תרגול סדר האותיות בערבית מהאות הראשונה עד האחרונה.</p>
+          <a class="button" href="decks/arabic-letter-order.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Arabic Letter Names</h3>
+          <p>למידת שמות האותיות בערבית והיכרות ראשונית עם הצלילים שלהן.</p>
+          <a class="button" href="decks/arabic-letter-names.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Arabic Letter Forms</h3>
+          <p>תרגול הצורות השונות של האות בתוך מילה: בתחילה, באמצע ובסוף.</p>
+          <a class="button" href="decks/arabic-letter-forms.apkg" download>Download Deck</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>קבוצה 2: תנועות וניקוד</h2>
+
+      <div class="cards-grid">
+
+        <div class="deck-card">
+          <h3>Arabic Short Vowels</h3>
+          <p>תרגול פתחה, כסרה ודמה: a, i, u.</p>
+          <a class="button" href="decks/arabic-short-vowels.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Arabic Long Vowels</h3>
+          <p>תרגול תנועות ארוכות בערבית: aa, ii, uu.</p>
+          <a class="button" href="decks/arabic-long-vowels.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Arabic Shadda</h3>
+          <p>תרגול שדה, כלומר אות מודגשת או כפולה בהגייה.</p>
+          <a class="button" href="decks/arabic-shadda.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Tanween Words</h3>
+          <p>תרגול תנוין בתוך מילים אמיתיות בערבית.</p>
+          <a class="button" href="decks/tanween-words.apkg" download>Download Deck</a>
+        </div>
+
+        <div class="deck-card">
+          <h3>Sukoon Words</h3>
+          <p>תרגול סוכון דרך מילים פשוטות ויומיומיות.</p>
+          <a class="button" href="decks/sukoon-words.apkg" download>Download Deck</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>קבוצה 3: תרגול קריאה</h2>
+
+      <div class="cards-grid">
+
+        <div class="deck-card">
+          <h3>Reading Practice</h3>
+          <p>מילים קלות עם ניקוד מלא, תעתיק והקלטה קולית לתרגול קריאה.</p>
+          <a class="button" href="decks/reading-practice.apkg" download>Download Deck</a>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="download-all">
+      <h2>רוצים להוריד את כל הכרטיסיות?</h2>
+      <p>אפשר להוריד קובץ אחד שכולל את כל חבילות ה־Anki יחד.</p>
+      <a class="button" href="decks/all-arabic-decks.zip" download>Download All Decks</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Created by Shahd and Itamar | מעיין במדבר</p>
+  </footer>
+
+</body>
+</html>
