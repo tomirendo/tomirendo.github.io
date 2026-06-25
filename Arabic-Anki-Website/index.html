@@ -6,15 +6,18 @@
   <title>מעיין במדבר - Arabic Anki Decks</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
     * {
       box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
       background: linear-gradient(135deg, #f7efe5, #fffaf4);
       color: #2b211c;
+      line-height: 1.6;
     }
 
     header {
@@ -24,19 +27,28 @@
       text-align: center;
       border-bottom-left-radius: 45px;
       border-bottom-right-radius: 45px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     header h1 {
       margin: 0;
       font-size: 48px;
       letter-spacing: 1px;
+      font-weight: 700;
     }
 
     header h2 {
       margin: 15px 0 0;
       font-size: 26px;
-      font-weight: normal;
+      font-weight: 400;
       opacity: 0.95;
+    }
+
+    .arabic {
+      direction: rtl;
+      font-size: 28px;
+      color: #e5d1c2;
+      margin-top: 12px;
     }
 
     .container {
@@ -45,22 +57,97 @@
       padding: 0 22px;
     }
 
-    .intro {
+    .content-block {
       background: white;
-      padding: 30px;
-      border-radius: 24px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+      padding: 35px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      margin-bottom: 30px;
+    }
+
+    .content-block h3 {
+      margin-top: 0;
+      color: #5c3824;
+      font-size: 24px;
+      border-right: 5px solid #8b5e3c;
+      padding-right: 15px;
+      margin-bottom: 20px;
+    }
+
+    .content-block p {
+      font-size: 18px;
+      color: #4a3f39;
+      margin-bottom: 15px;
+    }
+
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .anki-download-box {
+      background: #fdfbf7;
+      border: 1px solid #eaddd3;
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      line-height: 1.8;
+    }
+
+    .anki-download-box h4 {
+      margin: 0 0 10px;
+      color: #7a4b2d;
       font-size: 20px;
     }
 
-    .intro strong {
+    .anki-buttons {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn-primary, .btn-secondary, .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #8b5e3c;
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(139, 94, 60, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: #6f452b;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
       color: #8b5e3c;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-size: 16px;
+      border: 2px solid #8b5e3c;
+    }
+
+    .btn-secondary:hover {
+      background: #f7efe5;
     }
 
     .section {
-      margin-top: 38px;
+      margin-top: 45px;
     }
 
     .section h2 {
@@ -68,27 +155,23 @@
       color: #7a4b2d;
       border-right: 7px solid #c78b59;
       padding-right: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 25px;
     }
 
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
     }
 
     .deck-card {
       background: white;
-      border-radius: 22px;
-      padding: 24px;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
       border: 1px solid #f0dfcf;
-      transition: 0.25s;
-    }
-
-    .deck-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+      display: flex;
+      flex-direction: column;
     }
 
     .deck-card h3 {
@@ -97,34 +180,80 @@
       color: #5c3824;
     }
 
-    .deck-card p {
-      margin: 0 0 18px;
-      color: #5f514a;
-      line-height: 1.6;
+    .deck-card p.subtitle {
+      margin: 0 0 15px;
+      color: #6b5a50;
       font-size: 16px;
     }
 
-    .button {
-      display: inline-block;
-      background: #8b5e3c;
-      color: white;
-      text-decoration: none;
-      padding: 11px 20px;
-      border-radius: 12px;
-      font-weight: bold;
-      transition: 0.2s;
+    details {
+      margin-bottom: 20px;
+      flex-grow: 1; /* Pushes the button to the bottom */
     }
 
-    .button:hover {
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: #8b5e3c;
+      font-size: 15px;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      user-select: none;
+      transition: color 0.2s;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::before {
+      content: "▼";
+      display: inline-block;
+      margin-left: 8px;
+      font-size: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    details[open] summary::before {
+      transform: rotate(180deg);
+    }
+
+    details[open] summary {
+      color: #5c3824;
+    }
+
+    .details-content {
+      padding: 12px 15px;
+      background: #faf6f1;
+      border-right: 3px solid #d3baa7;
+      border-radius: 8px;
+      font-size: 14.5px;
+      color: #4a3f39;
+      margin-top: 5px;
+      line-height: 1.5;
+    }
+
+    .deck-card .button {
+      background: #8b5e3c;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 10px;
+      align-self: flex-start;
+      margin-top: auto;
+    }
+
+    .deck-card .button:hover {
       background: #6f452b;
     }
 
     .download-all {
       text-align: center;
-      margin: 45px 0;
+      margin: 50px 0;
       background: #fff4ea;
-      padding: 28px;
-      border-radius: 24px;
+      padding: 35px;
+      border-radius: 20px;
       border: 1px dashed #c78b59;
     }
 
@@ -137,28 +266,14 @@
       text-align: center;
       padding: 30px;
       color: #6b5a50;
-      font-size: 16px;
-    }
-
-    .arabic {
-      direction: rtl;
-      font-size: 28px;
-      color: #dbbaa9;
-      margin-top: 12px;
+      font-size: 15px;
     }
 
     @media (max-width: 600px) {
-      header h1 {
-        font-size: 36px;
-      }
-
-      header h2 {
-        font-size: 21px;
-      }
-
-      .intro {
-        font-size: 17px;
-      }
+      header h1 { font-size: 32px; }
+      header h2 { font-size: 20px; }
+      .anki-buttons { flex-direction: column; }
+      .btn-primary, .btn-secondary, .deck-card .button { width: 100%; text-align: center; }
     }
   </style>
 </head>
@@ -173,19 +288,42 @@
 
   <main class="container">
 
-    <section class="intro">
+    <section class="content-block">
+      <h3>הרציונל מאחורי הפרויקט</h3>
       <p>
-        פרויקט זה נעשה על ידי <strong>שהד ואיתמר</strong> במסגרת התוכנית
-        <strong>מעיין במדבר</strong>.
+        פרויקט זה נוצר בשיתוף פעולה של <strong>שהד ואיתמר</strong> במסגרת התוכנית <strong>מעיין במדבר</strong>.
       </p>
       <p>
-        מטרת הפרויקט היא לעזור ללומדים חדשים להתחיל ללמוד ערבית בצורה הדרגתית,
-        פשוטה וברורה בעזרת כרטיסיות Anki.
+        מתוך הניסיון המשותף שלנו – כדוברת השפה וכמי שלומד אותה – זיהינו חוסר משמעותי במשאבי למידה איכותיים למתחילים. רוב מאגרי הכרטיסיות (Anki decks) הקיימים ברשת מניחים ידע מוקדם וקופצים ישירות לאוצר מילים מתקדם או למבנים תחביריים מורכבים. 
       </p>
       <p>
-        הכרטיסיות מחולקות לפי שלבים: אותיות, צורות האותיות, תנועות, סימני ניקוד,
-        ולבסוף תרגול קריאה של מילים בערבית.
+        הפרויקט הזה נולד מתוך ההבנה שיש צורך קריטי במשאב שמתמקד ביסודות המוחלטים: הכרת האותיות, הבנת התנועות, וקריאה בסיסית. יצרנו את המאגר הזה מאפס כדי לספק ללומדים תהליך למידה מובנה, מדורג ויסודי, המאפשר בניית ביטחון בקריאה ובהגייה ללא תחושת תסכול.
       </p>
+    </section>
+
+    <section class="content-block">
+      <h3>הנחיות למידה מומלצות</h3>
+      <p>
+        לשם הפקת התועלת המרבית ממאגר זה, מומלץ להתקדם באופן הדרגתי ולא להוריד את כל החבילות במקביל. יש לסיים ולשלוט בכל שלב בטרם המעבר לשלב הבא.
+      </p>
+      <p>
+        <strong>שימו לב:</strong> בתוך כל כרטיסייה למטה שולב תפריט נפתח תחת הכותרת <em>"הנחיות תרגול ומטרת החבילה"</em>. אנו ממליצים בחום לקרוא הנחיות אלו טרם הורדת החבילה, שכן הן מפרטות את הערך הפדגוגי של כל שלב ומכוונות לתרגול נכון.
+      </p>
+
+      <div class="anki-download-box">
+        <h4>שימוש בתוכנת Anki</h4>
+        <p style="font-size: 16px; margin-bottom: 0;">
+          הכרטיסיות שלנו מיועדות לשימוש בתוכנת Anki, הפועלת על בסיס אלגוריתם של חזרות מרווחות (Spaced Repetition) לייעול תהליך השינון והזיכרון לטווח ארוך. טרם הורדת הכרטיסיות, יש להתקין את התוכנה.
+        </p>
+        <div class="anki-buttons">
+          <a href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            להורדת Anki (חינם)
+          </a>
+          <a href="https://docs.ankiweb.net/background.html" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+            עיון במדריך התוכנה
+          </a>
+        </div>
+      </div>
     </section>
 
     <section class="section">
@@ -194,21 +332,39 @@
       <div class="cards-grid">
 
         <div class="deck-card">
-          <h3>Arabic Letter Order</h3>
-          <p>תרגול סדר האותיות בערבית מהאות הראשונה עד האחרונה.</p>
-          <a class="button" href="decks/arabic-letter-order.apkg" download>Download Deck</a>
+          <h3>Alphabet Recognition</h3>
+          <p class="subtitle">היכרות עם צלילי האותיות ושמותיהן.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> היכרות ראשונית עם השפה. טרם בניית מילים, יש לבסס זיהוי פונטי וויזואלי של כל אות בנפרד. מומלץ להאזין להקלטות בקפידה ולחזור עליהן בקול רם לשם הטמעת ההגייה הנכונה.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-letter-names.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
-          <h3>Arabic Letter Names</h3>
-          <p>למידת שמות האותיות בערבית והיכרות ראשונית עם הצלילים שלהן.</p>
-          <a class="button" href="decks/arabic-letter-names.apkg" download>Download Deck</a>
+          <h3>Alphabetical Sequence</h3>
+          <p class="subtitle">תרגול סדר האלפבית הערבי.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> הטמעת סדר האותיות. שליטה ברצף האלפביתי (אליף, בא, תא...) הינה חיונית להתמצאות עתידית במילונים (לשם איתור שורשים) ולהבנה מבנית מערכתית של השפה.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-letter-order.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
           <h3>Arabic Letter Forms</h3>
-          <p>תרגול הצורות השונות של האות בתוך מילה: בתחילה, באמצע ובסוף.</p>
-          <a class="button" href="decks/arabic-letter-forms.apkg" download>Download Deck</a>
+          <p class="subtitle">זיהוי צורות האות (תחילית, אמצעית, סופית).</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> זיהוי צורות משתנות. הכתב הערבי מחייב שינוי צורני של האות בהתאם למיקומה במילה (תחילית, אמצעית, סופית או מבודדת). תרגול זה מפתח את היכולת החזותית לזהות אותיות באופן שוטף בתוך רצף כתוב.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-letter-forms.apkg" download>הורדת החבילה</a>
         </div>
 
       </div>
@@ -221,32 +377,62 @@
 
         <div class="deck-card">
           <h3>Arabic Short Vowels</h3>
-          <p>תרגול פתחה, כסרה ודמה: a, i, u.</p>
-          <a class="button" href="decks/arabic-short-vowels.apkg" download>Download Deck</a>
+          <p class="subtitle">תרגול תנועות קצרות: פתחה, כסרה, דמה.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> שליטה בתנועות הקצרות (A, I, U). מאחר שבטקסטים יומיומיים תנועות אלו מושמטות ברובן, קריטי להטמיע את אופן הקריאה וההגייה שלהן בשלבים המוקדמים כדי למנוע שיבושים בהמשך.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-short-vowels.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
           <h3>Arabic Long Vowels</h3>
-          <p>תרגול תנועות ארוכות בערבית: aa, ii, uu.</p>
-          <a class="button" href="decks/arabic-long-vowels.apkg" download>Download Deck</a>
+          <p class="subtitle">תרגול תנועות ארוכות ואותיות אהו"י.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> הבחנה בין תנועות. בשפה הערבית, אורך התנועה עשוי לשנות את משמעות המילה לחלוטין. התרגול מתמקד בהגייה נכונה של אותיות ההארכה, תוך יצירת אבחנה ברורה בינן לבין התנועות הקצרות.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-long-vowels.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
           <h3>Arabic Shadda</h3>
-          <p>תרגול שדה, כלומר אות מודגשת או כפולה בהגייה.</p>
-          <a class="button" href="decks/arabic-shadda.apkg" download>Download Deck</a>
+          <p class="subtitle">תרגול סימן ההדגשה וההכפלה (שַדַּה).</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> הבנת עיצור כפול. סימן השַדַּה מעיד על הכפלת העיצור (בדומה לדגש חזק בשפה העברית). הקפדה על חוקיות זו הכרחית להבנת משקל המילה והגייתה המדויקת.
+            </div>
+          </details>
+          <a class="button" href="decks/arabic-shadda.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
           <h3>Tanween Words</h3>
-          <p>תרגול תנוין בתוך מילים אמיתיות בערבית.</p>
-          <a class="button" href="decks/tanween-words.apkg" download>Download Deck</a>
+          <p class="subtitle">זיהוי וקריאה של סיומות תנוין.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> זיהוי סיומות יחסה. התנוין (סיומת פונטית של '-ן') הוא מאפיין מורפולוגי שכיח המסייע בהבנת תפקיד המילה במשפט. התרגול בחבילה זו מיישם כלל זה על מילים שכיחות.
+            </div>
+          </details>
+          <a class="button" href="decks/tanween-words.apkg" download>הורדת החבילה</a>
         </div>
 
         <div class="deck-card">
           <h3>Sukoon Words</h3>
-          <p>תרגול סוכון דרך מילים פשוטות ויומיומיות.</p>
-          <a class="button" href="decks/sukoon-words.apkg" download>Download Deck</a>
+          <p class="subtitle">תרגול הברות סגורות באמצעות סוכון.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> תרגול קריאת הברות סגורות. הסוכון מציין היעדר תנועה (מקביל לשווא נח). מטרת החבילה היא לשפר את שטף הקריאה של מילים בעלות קצב פונטי קטוע או הברות סגורות מרובות.
+            </div>
+          </details>
+          <a class="button" href="decks/sukoon-words.apkg" download>הורדת החבילה</a>
         </div>
 
       </div>
@@ -259,23 +445,29 @@
 
         <div class="deck-card">
           <h3>Reading Practice</h3>
-          <p>מילים קלות עם ניקוד מלא, תעתיק והקלטה קולית לתרגול קריאה.</p>
-          <a class="button" href="decks/reading-practice.apkg" download>Download Deck</a>
+          <p class="subtitle">תרגול משולב של מילים בסיסיות בניקוד מלא.</p>
+          <details>
+            <summary>הנחיות תרגול ומטרת החבילה</summary>
+            <div class="details-content">
+              <strong>מטרת החבילה:</strong> אינטגרציה של מיומנויות. שלב זה מאגד את כל הכללים שנלמדו לקריאת מילים שלמות בניקוד מלא. לטובת הלמידה, יש להקפיד ולפענח את המילה באופן עצמאי טרם האזנה להקלטה המצורפת או בדיקת התעתיק.
+            </div>
+          </details>
+          <a class="button" href="decks/reading-practice.apkg" download>הורדת החבילה</a>
         </div>
 
       </div>
     </section>
 
     <section class="download-all">
-      <h2>רוצים להוריד את כל הכרטיסיות?</h2>
-      <p>אפשר להוריד קובץ אחד שכולל את כל חבילות ה־Anki יחד.</p>
-      <a class="button" href="decks/all-arabic-decks.zip" download>Download All Decks</a>
+      <h2>הורדה מרוכזת</h2>
+      <p>לנוחיותכם, ניתן להוריד קובץ ארכיון (ZIP) הכולל את כלל חבילות הלמידה.</p>
+      <a class="button" href="decks/all-arabic-decks.zip" download>הורדת כל החבילות</a>
     </section>
 
   </main>
 
   <footer>
-    <p>Created by Shahd and Itamar | מעיין במדבר</p>
+    <p>נוצר על ידי שהד ואיתמר | תוכנית מעיין במדבר</p>
   </footer>
 
 </body>
