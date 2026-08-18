@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MillionQ — a million-qubit OpenQASM simulator in a browser tab</title>
+<meta name="description" content="Bernstein–Vazirani, Deutsch–Jozsa and iterative phase estimation at a million qubits. Runs entirely in your browser, offline, instantly.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>◈</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap bar">
+    <div class="brand">
+      <span class="logo">◈</span>
+      <span class="name">Million<span class="zero">Q</span></span>
+      <span class="tag">openqasm 2.0 · client-side · offline</span>
+    </div>
+    <nav>
+      <a href="#run">Run</a>
+      <a href="#generate">Generate</a>
+      <a href="#scale">Scale</a>
+      <a href="#how">How</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>A million qubits.<br>In the tab you already have open.</h1>
+    <p class="lede">
+      MillionQ runs Bernstein&ndash;Vazirani, Deutsch&ndash;Jozsa and iterative phase estimation
+      circuits written in ordinary OpenQASM&nbsp;2.0. Two hundred qubits is a rounding error here.
+      A thousand is instant. <b>A million qubits &mdash; three and a half million gates &mdash;
+      solves in under a second</b>, in JavaScript, on a laptop, with the network cable unplugged.
+    </p>
+
+    <div class="numbers">
+      <div class="num"><b>1,000,000</b><span>qubits, measured</span></div>
+      <div class="num"><b>3,500,002</b><span>gates in one pass</span></div>
+      <div class="num"><b>942 ms</b><span>to a verified answer</span></div>
+      <div class="num"><b>0</b><span>network requests</span></div>
+    </div>
+
+    <p class="lede muted">
+      The trick is that it never builds a state vector. A million-qubit state vector has
+      2<sup>1,000,000</sup> amplitudes and will not fit in this universe &mdash; but these three
+      circuit families each collapse to an exact identity you can evaluate in a single streaming
+      pass, using memory proportional to the number of qubits rather than to the size of the
+      Hilbert space. <a href="#how">The identities are written out below</a>, and they are the
+      genuinely interesting part.
+    </p>
+  </div>
+</section>
+
+<main class="wrap">
+
+<!-- ────────────────────────────── run ────────────────────────────── -->
+<section id="run" class="panel">
+  <h2>1 · Run a circuit</h2>
+
+  <div class="toolbar">
+    <label>Sample
+      <select id="example">
+        <option value="">— none —</option>
+        <optgroup label="Bernstein–Vazirani">
+          <option value="bv_16.qasm">bv_16 · 16-bit secret</option>
+          <option value="bv_1000.qasm">bv_1000 · 1,000-bit secret</option>
+        </optgroup>
+        <optgroup label="Deutsch–Jozsa">
+          <option value="dj_constant_8.qasm">dj_constant_8 · constant oracle</option>
+          <option value="dj_balanced_512.qasm">dj_balanced_512 · 512 bits, balanced</option>
+        </optgroup>
+        <optgroup label="Iterative phase estimation">
+          <option value="ipe_16_16over113.qasm">ipe_16 · φ = 16/113</option>
+          <option value="ipe_200_1over7.qasm">ipe_200 · φ = 1/7, 200 rounds (958 KB)</option>
+        </optgroup>
+      </select>
+    </label>
+
+    <label>Algorithm
+      <select id="algorithm">
+        <option value="auto">auto</option>
+        <option value="bv">bv</option>
+        <option value="dj">dj</option>
+        <option value="ipe">ipe</option>
+      </select>
+    </label>
+
+    <label class="filelabel">
+      <input type="file" id="file" accept=".qasm,text/plain" hidden>
+      <span class="btn ghost">Open .qasm…</span>
+    </label>
+
+    <button id="run-btn" class="btn primary">Run</button>
+    <span id="status" class="status"></span>
+  </div>
+
+  <div class="split">
+    <div class="editor-wrap">
+      <div class="editor-head">
+        <span id="src-info">no circuit loaded</span>
+        <button id="download-src" class="btn tiny ghost" hidden>Download .qasm</button>
+      </div>
+      <textarea id="source" spellcheck="false" placeholder="OPENQASM 2.0;
+include &quot;qelib1.inc&quot;;
+qreg q[6];
+creg c[5];
+…
+
+Paste a circuit, drop a .qasm file here, load a sample
+above, or generate one of any width in section 2."></textarea>
+      <div id="big-note" class="bignote" hidden></div>
+    </div>
+
+    <div id="out" class="out">
+      <div class="placeholder">Results appear here.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────────────────────────── generate ──────────────────────────── -->
+<section id="generate" class="panel">
+  <h2>2 · Generate a circuit at any width</h2>
+  <p class="sub">
+    Pick a width and get a real OpenQASM file — every gate spelled out, nothing abbreviated. Try
+    2,000. Try 200,000. The generator will happily hand you a 67&nbsp;MiB circuit with three and a
+    half million gates in it, and section 1 will solve it.
+  </p>
+
+  <div class="gen-grid">
+    <label>Profile
+      <select id="gen-kind">
+        <option value="bv">Bernstein–Vazirani</option>
+        <option value="dj">Deutsch–Jozsa</option>
+        <option value="ipe">Iterative phase estimation</option>
+      </select>
+    </label>
+
+    <label id="wrap-width">Width <span class="hint" id="width-hint">query qubits</span>
+      <input type="number" id="gen-width" value="2000" min="1" max="1000000">
+    </label>
+
+    <label id="wrap-secret">Secret <span class="hint">blank = random</span>
+      <input type="text" id="gen-secret" placeholder="e.g. 110100101101" spellcheck="false">
+    </label>
+
+    <label id="wrap-oracle" hidden>Oracle
+      <select id="gen-oracle">
+        <option value="balanced">balanced</option>
+        <option value="constant-zero">constant-zero</option>
+        <option value="constant-one">constant-one</option>
+      </select>
+    </label>
+
+    <label id="wrap-phase" hidden>Phase φ <span class="hint">exact fraction</span>
+      <span class="frac">
+        <input type="number" id="gen-num" value="1" min="0">
+        <span>/</span>
+        <input type="number" id="gen-den" value="7" min="1">
+      </span>
+    </label>
+
+    <div class="gen-actions">
+      <button id="gen-btn" class="btn primary">Generate</button>
+      <button id="gen-run" class="btn">Generate &amp; run</button>
+    </div>
+  </div>
+  <div id="gen-estimate" class="estimate"></div>
+</section>
+
+<!-- ────────────────────────────── scale ────────────────────────────── -->
+<section id="scale" class="panel">
+  <h2>3 · Scale</h2>
+  <p class="sub">
+    Measured end to end: build the QASM text, parse every statement, solve, and verify the answer
+    against the planted one. Times are from a laptop; press <em>Generate &amp; run</em> above to
+    reproduce any row in your own browser.
+  </p>
+  <div class="tablewrap">
+  <table class="cmp">
+    <thead><tr><th>Profile</th><th>Width</th><th>Gates</th><th>QASM size</th><th>Solve</th><th></th></tr></thead>
+    <tbody>
+      <tr><td>Bernstein–Vazirani</td><td>1,000</td><td>3,502</td><td>0.1 MiB</td><td>16 ms</td><td class="x">✓ exact</td></tr>
+      <tr><td>Bernstein–Vazirani</td><td>10,000</td><td>35,002</td><td>0.6 MiB</td><td>21 ms</td><td class="x">✓ exact</td></tr>
+      <tr><td>Bernstein–Vazirani</td><td>100,000</td><td>350,002</td><td>6.2 MiB</td><td>112 ms</td><td class="x">✓ exact</td></tr>
+      <tr class="star"><td>Bernstein–Vazirani</td><td>1,000,000</td><td>3,500,002</td><td>67.2 MiB</td><td>942 ms</td><td class="x">✓ exact</td></tr>
+      <tr class="star"><td>Deutsch–Jozsa</td><td>1,000,000</td><td>3,500,002</td><td>67.2 MiB</td><td>1.08 s</td><td class="x">✓ exact</td></tr>
+      <tr><td>Phase estimation</td><td>200 rounds</td><td>20,900</td><td>0.9 MiB</td><td>45 ms</td><td class="x">✓ exact</td></tr>
+      <tr><td>Phase estimation</td><td>500 rounds</td><td>127,250</td><td>9.4 MiB</td><td>184 ms</td><td class="x">✓ exact</td></tr>
+      <tr><td>Phase estimation</td><td>800 rounds</td><td>323,600</td><td>33.4 MiB</td><td>511 ms</td><td class="x">✓ exact</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="sub" style="margin-top:1.1rem">
+    &ldquo;Exact&rdquo; is meant literally. The recovered secret is compared bit by bit against the
+    one that was planted, and the recovered phase against the exact rational it was built from —
+    no sampling, no shot noise, no tolerance.
+  </p>
+</section>
+
+<!-- ────────────────────────────── how ────────────────────────────── -->
+<section id="how" class="panel">
+  <h2>4 · Why this is possible</h2>
+  <p class="sub">
+    A general quantum circuit really does need exponential memory, and nothing here claims
+    otherwise. But these three families are special: each one has an exact solution that falls out
+    of the structure, which is what makes a million qubits a perfectly reasonable thing to ask for.
+  </p>
+
+  <div class="cards">
+    <article class="card">
+      <h3>Bernstein–Vazirani</h3>
+      <p>
+        The oracle is a row of <code>cx q[i], q[N]</code> gates with the ancilla held in |−⟩. Each
+        control kicks a phase of (−1)<sup>s<sub>i</sub></sup> onto q[i], and the closing H layer
+        turns that phase pattern straight back into a bit pattern.
+      </p>
+      <p class="ident">c[i] = s<sub>i</sub> = 1 iff <code>cx q[i], q[N]</code> appears</p>
+      <p class="note">
+        One quantum query beats N classical ones — that is the famous part. The part that matters
+        here is that the answer is recoverable in a single linear scan, so the cost is set by how
+        fast you can read the file, not by the width.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Deutsch–Jozsa</h3>
+      <p>
+        A canonical oracle has exactly three forms: nothing at all, a single <code>x q[N]</code>,
+        or a set of <code>cx</code> controls. The first two are the constant functions; the third
+        flips on exactly half the inputs.
+      </p>
+      <p class="ident">constant ⟺ the oracle body contains no <code>cx</code></p>
+      <p class="note">
+        The promise that makes Deutsch–Jozsa work — constant or balanced, never in between — is
+        also what pins the answer to the oracle's shape, and a shape is cheap to read.
+      </p>
+    </article>
+
+    <article class="card">
+      <h3>Iterative phase estimation</h3>
+      <p>
+        q[1] is prepared in |1⟩, an eigenstate of <code>cu1</code>, so it never entangles with
+        anything. One control qubit is recycled through every round, carrying a phase α<sub>r</sub>
+        and measured immediately after an H:
+      </p>
+      <p class="ident">α<sub>r</sub> = θ<sub>r</sub> − Σ<sub>j&lt;r</sub> b<sub>j</sub>·π/2<sup>r−j</sup>,&nbsp;&nbsp; P(1) = sin²(α<sub>r</sub>/2)</p>
+      <p class="note">
+        For a dyadic phase α<sub>r</sub>/π is always an integer, so each round is deterministic and
+        the bit is just its parity — 200 rounds of quantum metrology, reduced to a parity check.
+      </p>
+    </article>
+  </div>
+
+  <div class="verify">
+    <h3>The one place real work was needed</h3>
+    <p>
+      Phase estimation at <em>t</em> rounds uses angles of the form p·π/2<sup>t−1</sup>. By round 53
+      that is smaller than the gap between adjacent float64 values, and by round 200 a double
+      rounds it flat to zero — every bit after the 53rd would be garbage.
+    </p>
+    <p>
+      So MillionQ never converts an angle to a float. Gate parameters are parsed into exact
+      rationals of π backed by BigInt, kept exact through every addition and division, and the
+      round outcome is decided by an exact integer-parity test rather than by comparing floating
+      point numbers. That is why the sample <code>ipe_200</code> circuit comes back as a 60-digit
+      integer over 2<sup>200</sup> instead of an approximation, and why 800 rounds works just as
+      well as 8.
+    </p>
+    <p class="sig">
+      Try it: load <code>ipe_200</code> and look at the decimal expansion. It opens
+      0.142857142857142857… — the repeating decimal of <b>1/7</b>, whose binary expansion
+      <em>never</em> terminates, recovered cleanly across two hundred binary places until the
+      circuit's own precision runs out. In a float64 it would go wrong at the 53rd bit.
+    </p>
+  </div>
+</section>
+
+<footer class="wrap foot">
+  <p>
+    MillionQ reads OpenQASM&nbsp;2.0 and recognises the canonical Bernstein–Vazirani,
+    Deutsch–Jozsa and iterative-phase-estimation profiles. Everything — parsing, solving, and
+    circuit generation — happens in your browser; nothing you paste leaves the page, and the whole
+    thing works with no network at all.
+  </p>
+</footer>
+
+</main>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
